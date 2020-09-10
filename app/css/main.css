@@ -1,0 +1,257 @@
+body {
+	background: #bbd2c5; /* fallback for old browsers */
+	background: -webkit-linear-gradient(
+		to right,
+		#bbd2c5,
+		#536976,
+		#bbd2c5
+	); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(
+		to right,
+		#bbd2c5,
+		#536976,
+		#bbd2c5
+	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.main-frame {
+	position: relative;
+	margin: auto;
+	margin-top: 25px;
+	margin-bottom: 25px;
+	max-width: 600px;
+	min-height: 600px;
+
+	background: #606c88; /* fallback for old browsers */
+	background: -webkit-linear-gradient(
+		to right,
+		#3f4c6b,
+		#606c88
+	); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(
+		to right,
+		#3f4c6b,
+		#606c88
+	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+	box-shadow: 3px 3px 8px 3px #333;
+}
+
+.calendar {
+	display: flex;
+	justify-content: space-between;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #fff;
+	/* text-shadow: 1px 1px 1px #888; */
+	align-content: center;
+}
+
+.mdy-calendar {
+	display: flex;
+}
+
+#day {
+	padding: 1rem 0.4rem 1rem 1rem;
+	font-size: 4rem;
+	font-weight: 700;
+}
+
+#month {
+	margin-top: 1.6rem;
+	font-size: 1.8rem;
+	font-weight: 600;
+}
+
+#year {
+	margin-top: -0.8rem;
+	font-size: 1.8rem;
+	font-weight: 100;
+	color: #ccc;
+}
+
+#day-of-week {
+	display: flex;
+	align-content: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 1rem;
+	font-size: 2rem;
+	color: #ccc;
+}
+
+/* style task bar */
+.progress-bar {
+	display: flex;
+	flex-flow: row;
+	margin: 1rem;
+	height: 2rem;
+	border-radius: 5px 5px;
+	overflow: visible;
+	font-size: 0.8rem;
+	/* box-shadow: 1px 1px 5px 1px #eee; */
+}
+.progress-bar div {
+	box-shadow: 1px 1px 8px 1px #888;
+	position: relative;
+}
+#completed-tasks-bar {
+	background-color: green;
+	flex-grow: 0;
+}
+#pausing-tasks-bar {
+	background-color: yellow;
+	flex-grow: 0;
+}
+#current-tasks-bar {
+	background-color: #222;
+	flex-grow: 1;
+}
+
+.completed-tasks-tooltip {
+	display: inline-block;
+	color: black;
+	position: absolute;
+	top: -3rem;
+	left: 50%;
+	transform: translate(-50%, 0%);
+	background-color: #3ee22f48;
+	border-radius: 2rem;
+	padding: 0.5rem 1rem;
+}
+.pausing-tasks-tooltip {
+	display: inline-block;
+	color: black;
+	position: absolute;
+	top: -3rem;
+	left: 50%;
+	transform: translate(-50%, 0%);
+	background-color: #e9e62948;
+	border-radius: 2rem;
+	padding: 0.5rem 1rem;
+}
+.current-tasks-tooltip {
+	display: inline-block;
+	color: black;
+	position: absolute;
+	top: -3rem;
+	left: 50%;
+	transform: translate(-50%, 0%);
+	background-color: #31333848;
+	border-radius: 2rem;
+	padding: 0.5rem 1rem;
+}
+
+.tasks-tooltip:after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin-left: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: #99999955 transparent transparent transparent;
+}
+.tasks-tooltip{
+	display: none;
+}
+
+#completed-tasks-bar:hover .completed-tasks-tooltip{
+	display: inline-block;
+}
+#pausing-tasks-bar:hover .pausing-tasks-tooltip{
+	display: inline-block;
+}
+#current-tasks-bar:hover .current-tasks-tooltip{
+	display: inline-block;
+}
+
+/* Style input field */
+.add-input {
+	margin: 1rem;
+	position: relative;
+}
+
+.add-input input {
+	height: 3rem;
+	width: 100%;
+	padding: 0 1rem;
+	background-color: #222;
+	border-width: 0;
+	border-radius: 5px 5px;
+	color: #eee;
+}
+.add-input .icon {
+	position: absolute;
+	height: 3rem;
+	right: 0.4rem;
+	color: #eee;
+	border-width: 0;
+}
+#add-task-icon:hover {
+	cursor: pointer;
+}
+
+/* Style task items */
+.task-item-container {
+	margin: 1rem;
+	position: relative;
+}
+.task-item {
+	height: 3rem;
+	padding: 0 1rem;
+	background-color: #888;
+	border-radius: 5px 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.task-control {
+	position: absolute;
+	height: 3rem;
+	right: 0.4rem;
+	top: 0.5rem;
+}
+.task-control button {
+	border-width: 0;
+	background-color: #888;
+}
+
+.task-control button:hover {
+	cursor: pointer;
+}
+
+/* Style button  */
+.btn-later-tasks {
+	margin-left: 1rem;
+	border-width: 0;
+	background-color: none;
+	font-size: 1.5rem;
+	font-weight: 600;
+}
+.btn-completed-tasks {
+	margin-left: 1rem;
+	border-width: 0;
+	background-color: none;
+	font-size: 1.5rem;
+	font-weight: 600;
+}
+
+/* Reset button */
+.btn-reset {
+	display: block;
+	margin: auto;
+	padding: 1rem;
+	/* background-color:rgba(238,159,16,0.95);
+	color: white; */
+	border-width: 0;
+	border-radius: 8px;
+}
+
+
+.footer {
+	position: absolute;
+	font-style: italic;
+	padding: 0.5rem 1rem;
+	bottom: 0.5rem;
+	right: 0;
+}
