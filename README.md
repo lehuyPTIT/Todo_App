@@ -10,7 +10,7 @@ INTRODUCTION
 ------------
 This project is created to report the result to supervisors of the author when apprenticing at the VietIS company.
 Includes:
-  - Add, Edit, Delete tasks function
+  - Add, Edit, Delete tasks functions
   - Send Mail to report base on status of the task items
 
 REQUIREMENTS
@@ -21,7 +21,7 @@ npm version >= 6.0.0
 
 INSTALLATION
 ------------
-- Install the lastest version of Node and NPM (recommend)
+- Install the lastest version of Node and NPM.
 - Navigate to project folder.
 - Run: "npm install" to install neccessary packets for the project.
 
@@ -29,7 +29,7 @@ CONFIGURATION AND USAGE
 -------------
 - Navigate to project folder.
 - Run: "npm start" to start server.
-- Run: "npm run package-linux to build the package to execute app in production environment
+- Run: "npm run package-linux to build the package to execute app in production environment.
 ( Note: Package building currently only works in Linux-env, author hasn't tested in the others envs)
 
 AUTHOR
