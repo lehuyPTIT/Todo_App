@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>To Do</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="ui/styles.css" />
+  </head>
+
+  <body class="flex-center">
+    <div class="to-do">
+      <div class="calender flex-between-center">
+        <div class="date">
+          <div class="day"></div>
+          <div>
+            <div class="month"></div>
+            <div class="year"></div>
+          </div>
+        </div>
+        <div class="day-in-week"></div>
+      </div>
+      <div class="progress">
+        <div id="completed-progress"></div>
+        <div id="do-later-progress"></div>
+      </div>
+      <div class="add-box border-radius flex-between-center">
+        <input name="item-name" class="item-name" placeholder="Add new item" />
+        <div class="pointer" id="add-button"></div>
+      </div>
+      <div id="list-item"></div>
+      <div class="do-later-box">
+        <div class="action-type pointer border-radius">Do Later</div>
+        <div id="do-later-list"></div>
+      </div>
+      <div class="completed-box">
+        <div class="action-type pointer border-radius">Completed</div>
+        <div id="completed-list"></div>
+      </div>
+      <div class="flex-center">
+        <span id="reset-progress" class="pointer">reset progress</span>
+      </div>
+    </div>
+    <script src="ui/script.js"></script>
+  </body>
+</html>
