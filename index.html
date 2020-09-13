@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" href="style.css">
+    <script>
+        window.$ = window.jQuery = require("jquery");
+    </script>
+</head>
+
+<body>
+    <div class="date">
+        <div class="calendar">
+            <div class="day">24</div>
+            <div class="my">
+                <div class="month">Feb</div>
+                <div class="year">2020</div>
+            </div>
+        </div>
+        <div class="today">Monday</div>
+    </div>
+    <!-- process -->
+    <div class=progress>
+        <div class="progressbar">
+            <div class="completed"></div>
+            <div class="paused"></div>
+        </div>
+    </div>
+
+    <!-- form add task -->
+    <form class="form" id="todoForm">
+        <input class="context" placeholder="Add new item" />
+        <button class="plus" id="createTodoBtn"></button>
+    </form>
+    <!-- list task -->
+    <div class="item" id="todoList">
+        <div class="itemName">Code app</div>
+        <div class="buttons">
+            <button class="delete"></button>
+            <button class="pause"></button>
+            <button class="resume"></button>
+            <button class="complete"></button>
+        </div>
+    </div>
+    <!--  -->
+    <div class="toggle">
+        <img src="img/arrow.svg" alt="Completed Toggle">
+        <span>Completed</span>
+    </div>
+    <div class="panel">
+        <div class="item">
+            <div class="itemName">Code app</div>
+            <div class="buttons">
+                <button class="delete"></button>
+                <button class="pause"></button>
+                <button class="resume"></button>
+                <button class="complete"></button>
+            </div>
+        </div>
+    </div>
+    <!--  -->
+    <div class="toggle">
+        <img src="img/arrow.svg" alt="Completed Toggle">
+        <span>Completed</span>
+    </div>
+    <div class="panel">
+        <div class="item">
+            <div class="itemName">Code app</div>
+            <div class="buttons">
+                <button class="delete"></button>
+                <button class="pause"></button>
+                <button class="resume"></button>
+                <button class="complete"></button>
+            </div>
+        </div>
+    </div>
+    <!--  -->
+    <div class="row">
+        <button class="reset">Send mail</button>
+        <button class="reset">Reset Progress</button>
+    </div>
+    <script src="app.js"></script>
+    <script src="datetime.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,192 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #403F4D;
+    color: white;
+    overflow: auto;
+    position: relative;
+    margin: 40px auto;
+    width: 550px;
+}
+
+.date {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0 40px 0;
+}
+
+.calendar {
+    display: flex;
+    align-items: center;
+}
+
+.day {
+    font-weight: bold;
+    font-size: 300%;
+}
+
+.my {
+    padding: 0 0 0 5px;
+}
+
+.month {
+    font-weight: bold;
+}
+
+.progress {
+    position: relative;
+    width: 100%;
+    height: 15px;
+    margin: 0 0 20px;
+    background: black;
+}
+
+.progressbar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.paused {
+    float: left;
+    height: 100%;
+    background: yellow;
+}
+
+.completed {
+    float: left;
+    height: 100%;
+    background: green;
+}
+
+
+/* form input */
+
+.form {
+    position: relative;
+}
+
+input {
+    margin: 0 0 10px 0;
+    padding: 20px 70px 20px 20px;
+    width: 100%;
+    height: 70px;
+    background: black;
+    border-radius: 3px;
+    border: none;
+    box-sizing: border-box;
+    color: white;
+    outline: none;
+}
+
+.plus {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    background: url("img/plus.svg");
+    border: none;
+}
+
+
+/* list task */
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 10px 0;
+    padding: 20px;
+    width: 100%;
+    min-height: 70px;
+    box-sizing: border-box;
+    background: blue;
+}
+
+.itemName {
+    /* width: calc(100% - 110px); */
+    overflow: auto;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100px;
+}
+
+.delete {
+    position: relative;
+    height: 24px;
+    border: none;
+    width: 24px;
+    background: url("img/x.svg");
+}
+
+.pause {
+    position: relative;
+    height: 24px;
+    border: none;
+    width: 24px;
+    background: url("img/pause.svg");
+}
+
+.resume {
+    position: relative;
+    height: 24px;
+    border: none;
+    width: 24px;
+    background: url("img/resume.svg");
+}
+
+.complete {
+    position: relative;
+    height: 24px;
+    border: none;
+    width: 30px;
+    background: no-repeat url("img/check.svg");
+}
+
+
+/*  */
+
+.toggle {
+    display: flex;
+    align-items: center;
+    margin: 1em 0 0.5em;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+img {
+    padding: 0 5px 0 0;
+    width: 1em;
+    height: 1em;
+    box-sizing: border-box;
+}
+
+.panel {
+    animation: slidedown 0.2s ease;
+}
+
+@keyframes slidedown {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.reset {
+    text-align: center;
+    background: transparent;
+    border: none;
+}
