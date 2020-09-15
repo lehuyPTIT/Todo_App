@@ -49,13 +49,13 @@ body {
     height: 100%;
 }
 
-.paused {
+.doing-progress {
     float: left;
     height: 100%;
     background: yellow;
 }
 
-.completed {
+.completed-progress {
     float: left;
     height: 100%;
     background: green;
@@ -125,20 +125,12 @@ input {
     background: url("img/x.svg");
 }
 
-.pause {
+.doing {
     position: relative;
     height: 24px;
     border: none;
     width: 24px;
     background: url("img/pause.svg");
-}
-
-.resume {
-    position: relative;
-    height: 24px;
-    border: none;
-    width: 24px;
-    background: url("img/resume.svg");
 }
 
 .complete {
@@ -170,10 +162,6 @@ img {
     box-sizing: border-box;
 }
 
-.panel {
-    animation: slidedown 0.2s ease;
-}
-
 @keyframes slidedown {
     0% {
         opacity: 0;
@@ -186,6 +174,12 @@ img {
 }
 
 .reset {
+    text-align: center;
+    background: transparent;
+    border: none;
+}
+
+.sendMain {
     text-align: center;
     background: transparent;
     border: none;

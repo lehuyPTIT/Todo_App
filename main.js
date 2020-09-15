@@ -1,14 +1,11 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
-const path = require('path');
-
-const DataStore = require('./DataStore')
-const todosData = new DataStore({ name: 'Todos' })
-let mainWindow;
-
-const storageTasksPath = path.join(app.getPath('userData'), 'data.json');
+const path = require('path')
+const DataAccessObject = require('./dao');
+const dao = new DataAccessObject("./data.json");
+var nodemailer = require('nodemailer');
 
 function createWindow() {
-    mainWindow = new BrowserWindow({
+    const mainWindow = new BrowserWindow({
         title: "ToDoList",
         width: 800,
         height: 600,
@@ -16,173 +13,72 @@ function createWindow() {
             nodeIntegration: true
         }
     })
-    win.loadFile('index.html')
-    fs.readFile(storageTasksPath, (err, data) => {
-        if (!err) {
-            try {
-                const storageData = JSON.parse(data);
-                const currentDateString = new Date().toDateString();
-                const dataInCurrentDate = storageData[currentDateString] ? storageData[currentDateString] : [];
-                mainWindow.webContents.on('did-finish-load', () => {
-                    mainWindow.webContents.send("TaskItems:Initial", JSON.stringify(dataInCurrentDate));
-                })
-            } catch (error) {
-                console.log(error);
-            }
-        }
-    })
+    mainWindow.loadFile('index.html')
+
 }
-// process add task item
-ipcMain.on('TaskItem:add', (event, message) => {
-    fs.readFile(storageTasksPath, (err, data) => {
-        if (!err) {
-            try {
-                const storageData = JSON.parse(data);
-                const addData = JSON.parse(message);
-                const oldDataOnAddingDate = storageData[addData.date] ? storageData[addData.date] : [];
-                oldDataOnAddingDate.push({ name: addData.task, status: "doing" });
-                storageData[addData.date] = oldDataOnAddingDate;
-                fs.writeFile(storageTasksPath, JSON.stringify(storageData), (err) => {
-                    event.reply('TaskItem:completeAdd', addData.task);
-                })
-            } catch (error) {
-                console.log(error);
-            }
-        }
 
-    })
+ipcMain.on('store-data', (event, data) => {
+    dao.data = data;
+    dao.writeData();
 })
 
-// process change task item status to completed
-ipcMain.on('TaskItem:complete', (event, message) => {
-        fs.readFile(storageTasksPath, (err, data) => {
-            if (!err) {
-                try {
-                    const storageData = JSON.parse(data);
-                    const changingData = JSON.parse(message);
-                    if (storageData[changingData.date]) {
-                        const prevDataIndex = storageData[changingData.date].findIndex(taskItem => {
-                            return taskItem.name === changingData.task;
-                        })
-                        if (prevDataIndex !== -1) {
-                            const sendData = {
-                                task: changingData.task,
-                                oldStatus: storageData[changingData.date][prevDataIndex].status
-                            }
-                            storageData[changingData.date][prevDataIndex].status = "completed";
-                            fs.writeFile(storageTasksPath, JSON.stringify(storageData), (err) => {
-                                event.reply('TaskItem:completeChangeCompletedStatus', JSON.stringify(sendData));
-                            })
-                        }
-                    }
-                } catch (error) {
-                    console.log(error);
-                }
-            }
-
-        })
-    })
-    // process change task item status to pausing
-ipcMain.on('TaskItem:pause', (event, message) => {
-        fs.readFile(storageTasksPath, (err, data) => {
-            if (!err) {
-                try {
-                    const storageData = JSON.parse(data);
-                    const changingData = JSON.parse(message);
-                    if (storageData[changingData.date]) {
-                        const prevDataIndex = storageData[changingData.date].findIndex(taskItem => {
-                            return taskItem.name === changingData.task;
-                        })
-                        if (prevDataIndex !== -1) {
-                            storageData[changingData.date][prevDataIndex].status = "paused";
-                            fs.writeFile(storageTasksPath, JSON.stringify(storageData), (err) => {
-                                event.reply('TaskItem:completeChangePausedStatus', changingData.task);
-                            })
-                        }
-                    }
-                } catch (error) {
-                    console.log(error);
-                }
-            }
-
-        })
-    })
-    // process change task item status to continue
-ipcMain.on('TaskItem:continue', (event, message) => {
-        fs.readFile(storageTasksPath, (err, data) => {
-            if (!err) {
-                try {
-                    const storageData = JSON.parse(data);
-                    const changingData = JSON.parse(message);
-                    if (storageData[changingData.date]) {
-                        const prevDataIndex = storageData[changingData.date].findIndex(taskItem => {
-                            return taskItem.name === changingData.task;
-                        })
-                        if (prevDataIndex !== -1) {
-                            storageData[changingData.date][prevDataIndex].status = "doing";
-                            fs.writeFile(storageTasksPath, JSON.stringify(storageData), (err) => {
-                                event.reply('TaskItem:completeChangeContinuingStatus', changingData.task);
-                            })
-                        }
-                    }
-                } catch (error) {
-                    console.log(error);
-                }
-            }
-
-        })
-    })
-    // process delete task item
-ipcMain.on('TaskItem:delete', (event, message) => {
-        fs.readFile(storageTasksPath, (err, data) => {
-            if (!err) {
-                try {
-                    const storageData = JSON.parse(data);
-                    const changingData = JSON.parse(message);
-                    if (storageData[changingData.date]) {
-                        const prevDataIndex = storageData[changingData.date].findIndex(taskItem => {
-                            return taskItem.name === changingData.task;
-                        })
-                        if (prevDataIndex !== -1) {
-                            const sendData = JSON.stringify({
-                                task: changingData.task,
-                                status: storageData[changingData.date][prevDataIndex].status
-                            })
-                            storageData[changingData.date].splice(prevDataIndex, 1)
-                            fs.writeFile(storageTasksPath, JSON.stringify(storageData), (err) => {
-                                event.reply('TaskItem:completDeleteTask', sendData);
-                            })
-                        }
-                    }
-                } catch (error) {
-                    console.log(error);
-                }
-            }
-
-        })
-    })
-    // process reset progress of task items
-ipcMain.on('TaskItem:reset', (event, date) => {
-    fs.readFile(storageTasksPath, (err, data) => {
-        if (!err) {
-            try {
-                const storageData = JSON.parse(data);
-                if (storageData[date]) {
-                    const newTaskItems = storageData[date].map(taskItem => {
-                        return {...taskItem, status: "doing" };
-                    })
-                    storageData[date] = newTaskItems;
-                    fs.writeFile(storageTasksPath, JSON.stringify(storageData), (err) => {
-                        event.reply('TaskItems:reload', JSON.stringify(storageData[date]));
-                    })
-                }
-            } catch (error) {
-                console.log(error);
-            }
-        }
-
-    })
+ipcMain.on("did-finish-load", async e => {
+    let data = await dao.readData();
+    e.sender.send("onload-data", data);
 })
 
+ipcMain.on("send-email", async e => {
+    let data = dao.data;
+    const getToday = () => {
+
+        let currentdate = new Date();
+        let datetime = currentdate.getDate() + "/" + (currentdate.getMonth() + 1) +
+            "/" + currentdate.getFullYear();
+        return datetime;
+    }
+    const convertArrayToString = (arrayData) => {
+        let rs = "";
+        arrayData.forEach(element => {
+            rs = rs + "\n\t- " + element;
+        });
+        return rs;
+    }
+
+    const plainToday = convertArrayToString(data.listItem) + convertArrayToString(data.doing) + convertArrayToString(data.completed)
+
+
+
+    var context_email =
+        'Phạm Thành Đạt báo cáo ngày ' + getToday() + '\n' +
+        ' Plain Today: \n' + plainToday + '\n' +
+        'Doing: \n' + convertArrayToString(data.doing) + '\n' +
+        'Completed: \n' + convertArrayToString(data.completed);
+
+
+    var sub = 'Báo cáo ngày' + getToday();
+
+    var transporter = nodemailer.createTransport({ // config mail server
+        service: 'Gmail',
+        auth: {
+            user: 'user@gmail.com',
+            pass: '****'
+        }
+    });
+
+    var mainOptions = { // thiết lập đối tượng, nội dung gửi mail
+        from: 'Pham Thanh Dat',
+        to: 'datpt063@gmail.com',
+        subject: sub,
+        text: context_email,
+
+    }
+    transporter.sendMail(mainOptions, function(err, info) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('Message sent: ' + info.response);
+        }
+    });
+})
 
 app.whenReady().then(createWindow)

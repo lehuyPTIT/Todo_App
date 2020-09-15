@@ -26,66 +26,39 @@
     <!-- process -->
     <div class=progress>
         <div class="progressbar">
-            <div class="completed"></div>
-            <div class="paused"></div>
+            <div class="completed-progress"></div>
+            <div class="doing-progress"></div>
         </div>
     </div>
 
     <!-- form add task -->
-    <form class="form" id="todoForm">
-        <input class="context" placeholder="Add new item" />
+    <form class="form">
+        <input class="context" id="newTask" placeholder="Add new item" />
         <button class="plus" id="createTodoBtn"></button>
     </form>
     <!-- list task -->
-    <div class="item" id="todoList">
-        <div class="itemName">Code app</div>
-        <div class="buttons">
-            <button class="delete"></button>
-            <button class="pause"></button>
-            <button class="resume"></button>
-            <button class="complete"></button>
-        </div>
-    </div>
+    <div id="list-item"></div>
     <!--  -->
-    <div class="toggle">
+    <div class="toggle-list-doing">
+        <img src="img/arrow.svg" alt="Completed Toggle">
+        <span>Doing</span>
+    </div>
+    <div class="panel-doing">
+        <div id="doing-list"></div>
+    </div>
+    <div class="toggle-list-completed">
         <img src="img/arrow.svg" alt="Completed Toggle">
         <span>Completed</span>
+
     </div>
-    <div class="panel">
-        <div class="item">
-            <div class="itemName">Code app</div>
-            <div class="buttons">
-                <button class="delete"></button>
-                <button class="pause"></button>
-                <button class="resume"></button>
-                <button class="complete"></button>
-            </div>
-        </div>
+    <div class="panel-completed">
+        <div id="completed-list"></div>
     </div>
-    <!--  -->
-    <div class="toggle">
-        <img src="img/arrow.svg" alt="Completed Toggle">
-        <span>Completed</span>
-    </div>
-    <div class="panel">
-        <div class="item">
-            <div class="itemName">Code app</div>
-            <div class="buttons">
-                <button class="delete"></button>
-                <button class="pause"></button>
-                <button class="resume"></button>
-                <button class="complete"></button>
-            </div>
-        </div>
-    </div>
-    <!--  -->
     <div class="row">
-        <button class="reset">Send mail</button>
+        <button class="sendMain">Send mail</button>
         <button class="reset">Reset Progress</button>
     </div>
     <script src="app.js"></script>
-    <script src="datetime.js"></script>
-
 </body>
 
 </html>
