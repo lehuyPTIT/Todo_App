@@ -1,0 +1,10 @@
+.formcontent{
+    width: 100%;
+}
+.formcontent input{
+    width: 100%;
+}
+#textarea{
+    width: 100%;
+    height: 70px;
+}

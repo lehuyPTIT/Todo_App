@@ -1,0 +1,171 @@
+body {
+    background-color: #403F4D;
+}
+
+.app {
+    margin-left: 70px;
+    margin-right: 70px;
+}
+.process {
+    height: 10px;
+    width: 100%;
+    background-color: #2E2D34;
+    overflow: hidden;
+    margin: 20px 0 20px 0;
+    display: flex;
+}
+
+.time {
+    color: #FBFAFB;
+    display: flex;
+    font-size: 25px;
+}
+#date {
+    display: flex;
+    font-size: 55px!important;
+}
+
+#aaa {
+    margin-left: auto;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+
+.date-time {
+    margin-left: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.month-year {
+    margin-left: 5px;
+}
+
+.input {
+    display: flex;
+    height: 40px;
+    width: 100%;
+    color: #46464a;
+    background-color: #2E2D34;
+    margin-bottom: 10px;
+   
+}
+.input input{
+    color: white;
+}
+.input button{outline: none;}
+.input button:hover{
+    cursor: pointer;
+    color:black!important;
+}
+
+#task {
+    background-color: #2E2D34;
+    border: none;
+    width: 90%;
+    outline: none;
+    margin-left: 5px;
+}
+
+#submit {
+    width: 10%;
+    background-color: #2E2D34;
+    border: none;
+}
+.item{
+    display: flex;
+}
+.item span{
+    margin-left: auto;
+}
+.item span i{
+    margin-top: 15px;
+    margin-right: 10px;
+}
+.task div {
+    background-color: #4E4E5C;
+    height: 40px;
+    margin-bottom: 5px;
+    padding-left: 2px;
+    color: #93929b;
+    color: ;
+}
+.task div i{
+    margin: 10px;
+    height: 30px;
+    margin-left:auto;
+}
+.titleDoing{
+    margin: 10px 0 10px 0;
+}
+.titleDoing .tt{
+    background-color: #403F4D!;
+    font-size: 30px;
+    color: #FBFAFB;
+    margin-top: 10px;
+}
+.titleDoing .icon-tt{
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+.fas {
+    color: cornsilk;
+}
+.doing div{
+    height: 40px;
+    background-color: #4e4e5c;
+    margin-bottom: 4px;
+    color: #93929b;
+}
+
+.content{
+    padding-top: 10px;
+    margin-right: auto;
+    margin-left: 10px!important;
+}
+
+.completed div{
+    height: 40px;
+    background-color: #4e4e5c;
+    margin-bottom: 4px;
+    color: #93929b;
+}
+
+.reset{
+    align-items: center;
+    text-align: center;
+    margin-top: 30px;
+}
+.reset span{
+    height: 20px;
+    border: 1px solid #4e4e5c;
+    background-color: #4e4e5c;
+}
+.complate {
+    background-color: #62dca5;
+    height: 100%;
+}
+.doingProcess{
+    background-color: #f7f879;
+    height: 100%;
+}
+.taskProcess{
+    height: 100%;
+}
+.fa-times{
+    color: red;
+}
+.fa-pause{
+    color: sandybrown;
+}
+.fa-check{
+    color: springgreen;
+}
+.reset button{
+    background-color: #2E2D34;
+    color: white;
+}
